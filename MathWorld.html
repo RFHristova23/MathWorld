@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ebebeb;
+            color: #333;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background-color: #5cd65c;
+            color: rgb(255, 255, 255);
+            padding: 1em 0;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        nav {
+            background-color: #b5f581;
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: rgb(43, 43, 43);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            z-index: 2;
+            position: relative;
+        }
+        nav a:hover {
+            background-color: #35cf35;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            z-index: 2;
+        }
+        .sidebar {
+            width: 40%;
+            height: 70%;
+            padding: 20px;
+            background-color: #58bd1d;
+            border-radius: 10px;
+            box-shadow: 0 0 100px rgba(0,0,0,0.1);
+            margin-right: 20px;
+            z-index: 2;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+        .section {
+            margin: 20px 0;
+            height: 80%;
+            padding: 20px;
+            background-color: #5adb40;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        footer {
+            background-color: #43b343;
+            color: rgb(226, 226, 226);
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 2;
+        }
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2aa539;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2;
+            position: relative;
+        }
+        button:hover {
+            background-color: #36b336;
+        }
+        .floating-numbers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .floating-numbers span {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(102, 255, 0, 0.3);
+            animation: float 10s linear infinite;
+        }
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100vh);
+            }
+        }
+        .extra-section {
+            display: none;
+            padding: 20px;
+            background-color: #4aa34a;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #007400;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.detail-section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.style.display = 'block';
+                    setTimeout(() => {
+                        section.classList.add('active');
+                    }, 10);
+                } else {
+                    section.classList.remove('active');
+                    setTimeout(() => {
+                        section.style.display = 'none';
+                    }, 500);
+                }
+            });
+        }
+ 
+        function showExtraSection(sectionId) {
+            const extraSections = document.querySelectorAll('.extra-section');
+            extraSections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        function closeExtraSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.style.display = 'none';
+        }
+
+        function generateRandomNumbers() {
+            const container = document.querySelector('.floating-numbers');
+            for (let i = 0; i < 100; i++) {
+                const span = document.createElement('span');
+                span.innerText = Math.floor(Math.random() * 10);
+                span.style.left = Math.random() * 100 + 'vw';
+                span.style.top = Math.random() * 100 + 'vh';
+                span.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                container.appendChild(span);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            generateRandomNumbers();
+            showSection('overview');
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Math World</h1>
+        <p>Your one-stop resource for all things mathematics!</p>
+    </header>
+    <nav>
+        <a href="javascript:void(0)" onclick="showSection('algebra-detail')">Algebra</a>
+        <a href="javascript:void(0)" onclick="showSection('geometry-detail')">Geometry</a>
+        <a href="javascript:void(0)" onclick="showSection('calculus-detail')">Calculus</a>
+        <a href="javascript:void(0)" onclick="showSection('statistics-detail')">Statistics</a>
+    </nav>
+    <div class="container">
+        <div class="sidebar">
+            <div id="overview" class="section active">
+                <h1>Overview</h1>
+                <p>Welcome to Math World! Click on the sections above to learn more about Algebra, Geometry, Calculus, and Statistics.</p>
+            </div>
+        </div>
+        <div class="content">
+            <div id="algebra-detail" class="section detail-section" style="display: none;">
+                <h2>Algebra</h2>
+                <p>Algebra is a branch of mathematics dealing with symbols and the rules for manipulating those symbols. It is about finding the unknown or putting real-life variables into equations and then solving them.</p>
+                <h3>Example Problem</h3>
+                <p>Solve for x: 2x + 3 = 7</p>
+                <p>Solution: x = 2</p>
+                <button onclick="showSection('overview')">Back to Home</button>
+                <div class="button-container">
+                    <button onclick="showExtraSection('extra1-algebra')">Extra Section 1</button>
+                    <button onclick="showExtraSection('extra2-algebra')">Extra Section 2</button>
+                </div>
+            </div>
+            <div id="extra1-algebra" class="extra-section extra-section-algebra" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra1-algebra')">Close</button>
+                <h2>Extra Section 1</h2>
+                <p>Content for extra section 1 related to Algebra goes here.</p>
+                <button onclick="showSection('algebra-detail')">Back to Algebra</button>
+            </div>
+            <div id="extra2-algebra" class="extra-section extra-section-algebra" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra2-algebra')">Close</button>
+                <h2>Extra Section 2</h2>
+                <p>Content for extra section 2 related to Algebra goes here.</p>
+                <button onclick="showSection('algebra-detail')">Back to Algebra</button>
+            </div>
+            <div id="geometry-detail" class="section detail-section" style="display: none;">
+                <h2>Geometry</h2>
+                <p>Geometry is the branch of mathematics concerned with the properties and relations of points, lines, surfaces, and solids. It deals with the shape, size, and relative position of figures and with properties of space.</p>
+                <h3>Example Problem</h3>
+                <p>Find the area of a circle with radius r.</p>
+                <p>Solution: Area = πr²</p>
+                <button onclick="showSection('overview')">Back to Home</button>
+                <div class="button-container">
+                    <button onclick="showExtraSection('extra1-geometry')">Extra Section 1</button>
+                    <button onclick="showExtraSection('extra2-geometry')">Extra Section 2</button>
+                </div>
+            </div>
+            <div id="extra1-geometry" class="extra-section extra-section-geometry" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra1-geometry')">Close</button>
+                <h2>Extra Section 1</h2>
+                <p>Content for extra section 1 related to Geometry goes here.</p>
+                <button onclick="showSection('geometry-detail')">Back to Geometry</button>
+            </div>
+            <div id="extra2-geometry" class="extra-section extra-section-geometry" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra2-geometry')">Close</button>
+                <h2>Extra Section 2</h2>
+                <p>Content for extra section 2 related to Geometry goes here.</p>
+                <button onclick="showSection('geometry-detail')">Back to Geometry</button>
+            </div>
+            <div id="calculus-detail" class="section detail-section" style="display: none;">
+                <h2>Calculus</h2>
+                <p>Calculus is a branch of mathematics that involves the study of rates of change. It is divided into two main branches: Differential Calculus and Integral Calculus. It has widespread applications in science and engineering.</p>
+                <h3>Example Problem</h3>
+                <p>Differentiate f(x) = x² + 3x + 2.</p>
+                <p>Solution: f'(x) = 2x + 3</p>
+                <button onclick="showSection('overview')">Back to Home</button>
+                <div class="button-container">
+                    <button onclick="showExtraSection('extra1-calculus')">Extra Section 1</button>
+                    <button onclick="showExtraSection('extra2-calculus')">Extra Section 2</button>
+                </div>
+            </div>
+            <div id="extra1-calculus" class="extra-section extra-section-calculus" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra1-calculus')">Close</button>
+                <h2>Extra Section 1</h2>
+                <p>Content for extra section 1 related to Calculus goes here.</p>
+                <button onclick="showSection('calculus-detail')">Back to Calculus</button>
+            </div>
+            <div id="extra2-calculus" class="extra-section extra-section-calculus" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra2-calculus')">Close</button>
+                <h2>Extra Section 2</h2>
+                <p>Content for extra section 2 related to Calculus goes here.</p>
+                <button onclick="showSection('calculus-detail')">Back to Calculus</button>
+            </div>
+            <div id="statistics-detail" class="section detail-section" style="display: none;">
+                <h2>Statistics</h2>
+                <p>Statistics is the study of the collection, analysis, interpretation, presentation, and organization of data. It is used in a wide variety of academic disciplines, from the natural and social sciences to the humanities.</p>
+                <h3>Example Problem</h3>
+                <p>Calculate the mean of the data set: 2, 4, 6, 8, 10.</p>
+                <p>Solution: Mean = 6</p>
+                <button onclick="showSection('overview')">Back to Home</button>
+                <div class="button-container">
+                    <button onclick="showExtraSection('extra1-statistics')">Extra Section 1</button>
+                    <button onclick="showExtraSection('extra2-statistics')">Extra Section 2</button>
+                </div>
+            </div>
+            <div id="extra1-statistics" class="extra-section" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra1-statistics')">Close</button>
+                <h2>Extra Section 1</h2>
+                <p>Content for extra section 1 goes here.</p>
+                <button onclick="showSection('statistics-detail')">Back to Statistics</button>
+                </div>
+                <div id="extra2-statistics" class="extra-section" style="display: none;">
+                <button class="close-btn" onclick="closeExtraSection('extra2-statistics')">Close</button>
+                <h2>Extra Section 2</h2>
+                <p>Content for extra section 2 goes here.</p>
+                <button onclick="showSection('statistics-detail')">Back to Statistics</button>
+                </div>
+                </div>
+                </div>
+                <div class="floating-numbers"></div>
+                
+                </body>
+                </html>
