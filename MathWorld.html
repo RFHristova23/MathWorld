@@ -9,56 +9,68 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ebebeb;
+            background-color: #E3FDFD;
             color: #333;
             position: relative;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            height: 125vh;
         }
+ 
         header {
-            background-color: #5cd65c;
+            background-color:#71C9CE;
             color: rgb(255, 255, 255);
-            padding: 1em 0;
-            text-align: center;
-            z-index: 2;
+            padding: 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
+            z-index: 2;
         }
+ 
+        header h1 {
+            margin: 0;
+            flex: 1;
+        }
+ 
         nav {
-            background-color: #b5f581;
-            overflow: hidden;
+            background-color: #A6E3E9;
             z-index: 2;
-            position: relative;
+            display: flex;
+            border-radius: 20px;
         }
+ 
         nav a {
-            float: left;
             display: block;
             color: rgb(43, 43, 43);
             text-align: center;
             padding: 14px 16px;
-            text-decoration: none;
-            z-index: 2;
-            position: relative;
+           
         }
+ 
         nav a:hover {
-            background-color: #35cf35;
+            background-color: #CBF1F5;
+            border-radius: 20px;
         }
+ 
         .container {
             display: flex;
             flex: 1;
             padding: 20px;
             z-index: 2;
         }
+ 
         .sidebar {
             width: 40%;
-            height: 70%;
+            height: 700px;
             padding: 20px;
-            background-color: #58bd1d;
+            background-color: #A6E3E9;
             border-radius: 10px;
             box-shadow: 0 0 100px rgba(0,0,0,0.1);
             margin-right: 20px;
             z-index: 2;
         }
+ 
         .content {
             flex: 1;
             display: flex;
@@ -66,11 +78,12 @@
             position: relative;
             z-index: 2;
         }
+ 
         .section {
             margin: 20px 0;
-            height: 80%;
+            height: 600px;
             padding: 20px;
-            background-color: #5adb40;
+            background-color: #CBF1F5;
             border-radius: 20px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             position: relative;
@@ -79,18 +92,22 @@
             transform: translateY(20px);
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
+ 
         .section.active {
             opacity: 1;
             transform: translateY(0);
         }
+ 
         .section h2 {
             margin-top: 0;
         }
+ 
         .section p {
             line-height: 1.6;
         }
+ 
         footer {
-            background-color: #43b343;
+            background-color: #71C9CE;
             color: rgb(226, 226, 226);
             text-align: center;
             padding: 1em 0;
@@ -99,17 +116,19 @@
             bottom: 0;
             z-index: 2;
         }
+ 
         .button-container {
             position: absolute;
-            bottom: 20px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
         }
+ 
         button {
             padding: 10px 20px;
-            background-color: #2aa539;
+            background-color: #71C9CE;
             color: white;
             border: none;
             border-radius: 5px;
@@ -117,9 +136,11 @@
             z-index: 2;
             position: relative;
         }
+ 
         button:hover {
-            background-color: #36b336;
+            background-color: #A6E3E9;
         }
+ 
         .floating-numbers {
             position: fixed;
             top: 0;
@@ -130,12 +151,14 @@
             overflow: hidden;
             pointer-events: none;
         }
+ 
         .floating-numbers span {
             position: absolute;
             font-size: 20px;
-            color: rgba(102, 255, 0, 0.3);
+            color: #CBF1F5(102, 255, 0, 0.1);
             animation: float 10s linear infinite;
         }
+ 
         @keyframes float {
             from {
                 transform: translateY(0);
@@ -144,21 +167,23 @@
                 transform: translateY(-100vh);
             }
         }
+ 
         .extra-section {
             display: none;
             padding: 20px;
-            background-color: #4aa34a;
+            background-color: #A6E3E9;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             margin-top: 20px;
             position: relative;
         }
+ 
         .close-btn {
             position: absolute;
             top: 10px;
             right: 10px;
             padding: 5px 10px;
-            background-color: #007400;
+            background-color: #71C9CE;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -193,12 +218,12 @@
                 }
             });
         }
-
+ 
         function closeExtraSection(sectionId) {
             const section = document.getElementById(sectionId);
             section.style.display = 'none';
         }
-
+ 
         function generateRandomNumbers() {
             const container = document.querySelector('.floating-numbers');
             for (let i = 0; i < 100; i++) {
@@ -210,7 +235,7 @@
                 container.appendChild(span);
             }
         }
-
+ 
         document.addEventListener('DOMContentLoaded', () => {
             generateRandomNumbers();
             showSection('overview');
@@ -219,15 +244,15 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Math World</h1>
-        <p>Your one-stop resource for all things mathematics!</p>
+        <h1>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴍᴀᴛʜ ᴡᴏʀʟᴅ</h1>
+       
+        <nav>
+            <a href="javascript:void(0)" onclick="showSection('algebra-detail')">Algebra</a>
+            <a href="javascript:void(0)" onclick="showSection('geometry-detail')">Geometry</a>
+            <a href="javascript:void(0)" onclick="showSection('calculus-detail')">Calculus</a>
+            <a href="javascript:void(0)" onclick="showSection('statistics-detail')">Statistics</a>
+        </nav>
     </header>
-    <nav>
-        <a href="javascript:void(0)" onclick="showSection('algebra-detail')">Algebra</a>
-        <a href="javascript:void(0)" onclick="showSection('geometry-detail')">Geometry</a>
-        <a href="javascript:void(0)" onclick="showSection('calculus-detail')">Calculus</a>
-        <a href="javascript:void(0)" onclick="showSection('statistics-detail')">Statistics</a>
-    </nav>
     <div class="container">
         <div class="sidebar">
             <div id="overview" class="section active">
@@ -258,14 +283,15 @@
                 <button class="close-btn" onclick="closeExtraSection('extra2-algebra')">Close</button>
                 <h2>Extra Section 2</h2>
                 <p>Content for extra section 2 related to Algebra goes here.</p>
-                <button onclick="showSection('algebra-detail')">Back to Algebra</button>
+                <button onclick="showSection('algebra-detail')
+                ">Back to Algebra</button>
             </div>
             <div id="geometry-detail" class="section detail-section" style="display: none;">
                 <h2>Geometry</h2>
-                <p>Geometry is the branch of mathematics concerned with the properties and relations of points, lines, surfaces, and solids. It deals with the shape, size, and relative position of figures and with properties of space.</p>
+                <p>Geometry is a branch of mathematics concerned with the properties and relations of points, lines, surfaces, and solids.</p>
                 <h3>Example Problem</h3>
-                <p>Find the area of a circle with radius r.</p>
-                <p>Solution: Area = πr²</p>
+                <p>Find the area of a triangle with base 5 and height 10.</p>
+                <p>Solution: Area = 0.5 * base * height = 25</p>
                 <button onclick="showSection('overview')">Back to Home</button>
                 <div class="button-container">
                     <button onclick="showExtraSection('extra1-geometry')">Extra Section 1</button>
@@ -286,10 +312,10 @@
             </div>
             <div id="calculus-detail" class="section detail-section" style="display: none;">
                 <h2>Calculus</h2>
-                <p>Calculus is a branch of mathematics that involves the study of rates of change. It is divided into two main branches: Differential Calculus and Integral Calculus. It has widespread applications in science and engineering.</p>
+                <p>Calculus is the mathematical study of continuous change, dealing with derivatives and integrals of functions.</p>
                 <h3>Example Problem</h3>
-                <p>Differentiate f(x) = x² + 3x + 2.</p>
-                <p>Solution: f'(x) = 2x + 3</p>
+                <p>Find the derivative of f(x) = x^2.</p>
+                <p>Solution: f'(x) = 2x</p>
                 <button onclick="showSection('overview')">Back to Home</button>
                 <div class="button-container">
                     <button onclick="showExtraSection('extra1-calculus')">Extra Section 1</button>
@@ -310,31 +336,33 @@
             </div>
             <div id="statistics-detail" class="section detail-section" style="display: none;">
                 <h2>Statistics</h2>
-                <p>Statistics is the study of the collection, analysis, interpretation, presentation, and organization of data. It is used in a wide variety of academic disciplines, from the natural and social sciences to the humanities.</p>
+                <p>Statistics is the science of collecting, analyzing, and interpreting large quantities of numerical data.</p>
                 <h3>Example Problem</h3>
-                <p>Calculate the mean of the data set: 2, 4, 6, 8, 10.</p>
-                <p>Solution: Mean = 6</p>
+                <p>Find the mean of the data set: 2, 4, 6, 8, 10.</p>
+                <p>Solution: Mean = (2 + 4 + 6 + 8 + 10) / 5 = 6</p>
                 <button onclick="showSection('overview')">Back to Home</button>
                 <div class="button-container">
                     <button onclick="showExtraSection('extra1-statistics')">Extra Section 1</button>
                     <button onclick="showExtraSection('extra2-statistics')">Extra Section 2</button>
                 </div>
             </div>
-            <div id="extra1-statistics" class="extra-section" style="display: none;">
+            <div id="extra1-statistics" class="extra-section extra-section-statistics" style="display: none;">
                 <button class="close-btn" onclick="closeExtraSection('extra1-statistics')">Close</button>
                 <h2>Extra Section 1</h2>
-                <p>Content for extra section 1 goes here.</p>
+                <p>Content for extra section 1 related to Statistics goes here.</p>
                 <button onclick="showSection('statistics-detail')">Back to Statistics</button>
-                </div>
-                <div id="extra2-statistics" class="extra-section" style="display: none;">
+            </div>
+            <div id="extra2-statistics" class="extra-section extra-section-statistics" style="display: none;">
                 <button class="close-btn" onclick="closeExtraSection('extra2-statistics')">Close</button>
                 <h2>Extra Section 2</h2>
-                <p>Content for extra section 2 goes here.</p>
+                <p>Content for extra section 2 related to Statistics goes here.</p>
                 <button onclick="showSection('statistics-detail')">Back to Statistics</button>
-                </div>
-                </div>
-                </div>
-                <div class="floating-numbers"></div>
-                
-                </body>
-                </html>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Math World. All rights reserved.</p>
+    </footer>
+    <div class="floating-numbers"></div>
+</body>
+</html>
