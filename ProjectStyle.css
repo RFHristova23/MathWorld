@@ -1,0 +1,266 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #E3FDFD;
+  color: #333;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 125vh;
+}
+
+header {
+  background-color: #71C9CE;
+  color: rgb(255, 255, 255);
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+header h1 {
+  margin: 0;
+  flex: 1;
+}
+
+nav {
+  background-color: #A6E3E9;
+  z-index: 2;
+  display: flex;
+  border-radius: 20px;
+}
+
+nav a {
+  display: block;
+  color: rgb(43, 43, 43);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #CBF1F5;
+  border-radius: 20px;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  z-index: 2;
+}
+
+.sidebar {
+  width: 40%;
+  height: 500px;
+  padding: 20px;
+  background-color: #A6E3E9;
+  border-radius: 10px;
+  box-shadow: 0 0 100px rgba(214, 46, 46, 0.1);
+  margin-right: 20px;
+  z-index: 2;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  margin: 20px 0;
+  height: 400px;
+  padding: 20px;
+  background-color: #CBF1F5;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+  width: 900px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section h2 {
+  margin-top: 0;
+}
+
+.section p {
+  line-height: 1.6;
+}
+
+footer {
+  background-color: #71C9CE;
+  color: rgb(226, 226, 226);
+  text-align: center;
+  padding: 1em 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 2;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #71C9CE;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+
+button:hover {
+  background-color: #A6E3E9;
+}
+
+.floating-numbers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-numbers span {
+  position: absolute;
+  font-size: 20px;
+  color: #CBF1F5(102, 255, 0, 0.1);
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  from {
+      transform: translateY(0);
+  }
+  to {
+      transform: translateY(-100vh);
+  }
+}
+
+.extra-section {
+  display: none;
+  padding: 20px;
+  background-color: #A6E3E9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 15, 15, 0.1);
+  margin-top: 20px;
+  position: relative;
+  bottom: 30px;
+  width: 900px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #71C9CE;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+  
+/* 2xl */
+@media (max-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* xl */
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+/* lg */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+/* md */
+@media (max-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .container {
+    max-width: 475px;
+  }
+}
+
+/* xs */
+@media (max-width: 475px) {
+  .container {
+    width: 100%;
+  }
+}
+
+.right-sidebar {
+  width: 700px;
+  height: 500px;
+  padding: 20px;
+  background-color: #A6E3E9;
+  border-radius: 10px;
+  box-shadow: 0 0 100px rgba(214, 46, 46, 0.1);
+  margin-left: 20px;
+  z-index: 3;
+  visibility: hidden;
+  position: relative;
+}
+
+.right-sidebar .visible-image {
+  position: relative;
+  top: 10%;
+  left: 0px;
+  width: 80%;
+  height: auto;
+  visibility: visible; 
+}
+
+.overview-section {
+  background-color: #CBF1F5;
+  color: #333;
+  border: 2px solid #A6E3E9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+}
+
+.overview-section h1 {
+  color: #2a2a2a;
+}
+
+.overview-section p {
+  font-size: 1.2em;
+}
